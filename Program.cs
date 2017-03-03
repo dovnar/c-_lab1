@@ -150,40 +150,19 @@ namespace ConsoleApplication3
                 }
             }
             int summ = 0;
-            if(min[1] < max[1])
+            for (int i = (min[1] < max[1] ? min[1] : max[1]); i < (min[1] < max[1] ? max[1] : min[1]); i++)
             {
-                for(int i = min[1]+1; i < max[1]; i++)
+                for (int j = 0; j < 5; j++)
                 {
-                    for(int j = min[2]; j < (i == max[1]? max[2]: 5); j++)
+                    if (min[1] < max[1] && i >= min[1] && i <= max[1] ||
+                        min[1] > max[1] && i <= min[1] && i >= max[1] ||
+                        min[1] == max[1] && i == min[1])
                     {
-                        summ += arr[i, j];
-                    }
-                }
-            }
-            else if (min[1] > max[1])
-            {
-                for (int i = max[1] + 1; i < min[1]; i++)
-                {
-                    for (int j = max[2]; j < (i == min[1] ? min[2] : 5); j++)
-                    {
-                        summ += arr[i, j];
-                    }
-                }
-            }
-            else if (min[1] == max[1])
-            {
-                if (min[2] < max[2])
-                {
-                    for (int j = min[2]; j <  max[2]; j++)
-                    {
-                        summ += arr[min[1], j];
-                    }
-                }
-                else if (min[2] > max[2])
-                {
-                    for (int j = max[2]; j < min[2]; j++)
-                    {
-                        summ += arr[max[1], j];
+                        if (min[2] < max[2] && j > min[2] && j < max[2] ||
+                            min[2] > max[2] && j < min[2] && j > max[2])
+                        {
+                            summ += arr[i, j];
+                        }
                     }
                 }
             }
